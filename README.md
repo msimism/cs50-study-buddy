@@ -32,8 +32,12 @@ Clone the repository and navigate to the project directory:
 ```bash
 git clone https://github.com/msimism/cs50-study-buddy.git
 cd cs50-study-buddy
+```
+
+Run the program:
+```bash
 
 python main.py
-
+```
 
 
