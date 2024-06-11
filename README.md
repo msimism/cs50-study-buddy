@@ -22,10 +22,19 @@ Additionally, within each problem set folder, the program scrapes detailed assig
 
 CS50 Study Buddy is currently in development. Some features have not been properly implemented, and it is by no means complete. The project has been put on GitHub for the time being to facilitate collaboration and feedback.
 
+## TODO
+
+- **Downloading Course Materials**: The next update will include the ability to download each week's lecture follow-along code, which will be placed in the lecture folders.
+- **Short Videos**: The program will be updated to download relevant short video information. If the video/audio flags are selected, these videos will be downloaded alongside example code.
+
+### Recent Fixes
+
+- **Updated CS50X Logic**: Fixed parsing issue with the cs50x course.
+
 ### Known Issues
 
 - **Download Files Logic**: The logic for downloading files is yet to be implemented.
-- **CS50x Parsing Logic**: The parsing logic for CS50x courses needs to be fixed.
+- **Course Parsing Logic**: Some courses do not scrape and create all the problem sets correctly.
 
 ## How to Contribute
 
