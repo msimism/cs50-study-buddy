@@ -10,8 +10,12 @@
 - `shorts/functions`
 - And similar directories.
 
-The program also downloads the follow-along code discussed in the lectures into a folder named 
-- `/week-*/lecture/code_snippets` or a similar location.
+The program also downloads the follow-along code discussed in the lectures into a folder named:
+
+- `/week-*/lecture/code_snippets`
+
+or a similar location.
+
 Additionally, within each problem set folder, the program scrapes detailed assignment information and generates structured content to aid your learning process.
 
 ## Development Status
@@ -38,8 +42,8 @@ cd cs50-study-buddy
 
 Run the program:
 ```bash
-
 python main.py
+
 ```
 
 
