@@ -1,0 +1,4 @@
+bs4
+alive_progress
+inquirer
+requests
