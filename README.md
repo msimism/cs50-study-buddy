@@ -1,0 +1,3 @@
+CS50 Study Buddy is a Python program designed to be your ultimate aide for CS50 courses. When launched with specific flags, the program scrapes the relevant CS50 course websites to gather and download all required lesson plans and problem sets. It automatically creates a structured folder hierarchy for the course, such as "cs50x/week-1", "week-1/lecture", "week-1/pset-1", "pset-1/indoor", "week-1/shorts", "shorts/functions", and similar directories.
+
+The program also downloads the follow-along code discussed in the lectures into a folder named "/week-*/lecture/code_snippets" or a similar location. Additionally, within each problem set folder, the program scrapes detailed assignment information and generates structured content to aid your learning process.
