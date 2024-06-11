@@ -1,4 +1,4 @@
-lsfrom bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 import requests
 import urllib.parse
 import re
