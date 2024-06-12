@@ -8,6 +8,7 @@ class CommandLine:
         self.parser.add_argument("-video", help="download video files", action='store_true')
         self.parser.add_argument("-code", help="download code files", action='store_true')
         self.parser.add_argument("-destination", help="destination folder to save files", default='saved')
+        self.parser.add_argument("-debug", help="enable debug output", action='store_true')
 
     def parse_arguments(self):
         self.args = self.parser.parse_args()

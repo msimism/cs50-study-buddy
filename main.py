@@ -1,8 +1,8 @@
+# main.py
 from includes.cs50scraper import CS50Scraper
 from includes.cs50commandline import CommandLine
 from includes.cs50interface import Interface
-from includes.cs50 import CS50  # Import CS50
-from alive_progress import alive_bar
+from includes.cs50 import CS50
 import sys
 
 def main():
@@ -12,8 +12,8 @@ def main():
     if len(sys.argv) > 1:
         cli = CommandLine()
         args = cli.parse_arguments()
-        scraper = CS50Scraper(course=args.course, base_directory=args.destination)
-        scraper.scrape_course()
+        scraper = CS50Scraper(course=args.course, base_directory=args.destination, debug=args.debug)
+        scraper.scrape_course(download_audio=args.audio, download_video=args.video, download_code=args.code)
     else:
         interface = Interface(course_manager)  # Pass CS50 instance to Interface
         interface.display_menu()

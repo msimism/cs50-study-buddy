@@ -1,3 +1,4 @@
+# includes/cs50.py
 from bs4 import BeautifulSoup
 import requests
 import urllib.parse
@@ -81,7 +82,7 @@ class CS50:
             if choice.startswith(info['name']):
                 return key
         return None
- 
+
     def scrape_page(self, week):
         """
         Scrapes the main page for the given week.
@@ -124,7 +125,7 @@ class CS50:
         self.meta_tag = self.doc.find('meta', property='og:description')
         self.description = self.meta_tag['content'] if self.meta_tag else 'No description found'
         return f"Desc: {self.description}"
- 
+    
     def get_week_tags(self):
         self.h1_text = self.col.find('h1').get_text() if self.col.find('h1') else 'No h1 found'
         self.tags_text = self.col.find('p').get_text() if self.col.find('p') else 'No tags found'
@@ -153,7 +154,7 @@ class CS50:
                         url = link['href'] if link else 'No URL'
                         problem_sets.append({'title': title, 'url': url})
                 else:
-                    print("Debug - No problem sets found")
+                    #print("Debug - No problem sets found")
                     return []
             else:
                 # Use regex pattern to find all 'li' tags that contain 'Submit' links
@@ -165,10 +166,10 @@ class CS50:
                             url = link['href']
                             problem_sets.append({'title': title, 'url': url})
 
-            print("Debug - Problem Sets:", problem_sets)  # Debug print statement
+            #print("Debug - Problem Sets:", problem_sets)  # Debug print statement
             return problem_sets
         else:
-            print("Debug - No problem set column found")
+            #print("Debug - No problem set column found")
             return []
 
 
@@ -188,26 +189,40 @@ class CS50:
                     data[problem_set['title']] = content
                 else:
                     data[problem_set['title']] = 'Failed to retrieve'
-                    print(url)
+                    #print(url)
             else:
-                print("Error - Expected a dictionary but got:", type(problem_set))
+                return("Error - Expected a dictionary but got:", type(problem_set))
         return data
  
-    """
-    def scrape_and_save(self, week):
-        # Scrape data
-        self.scrape_page(week)
-        problem_sets = self.get_problem_set_lists()
- 
-        # Initialize file manager
-        file_manager = CS50FileManager(base_directory="/path/to/save")
- 
-        # Create folders
-        file_manager.create_folders(course=self.course, week=week, lectures=lecture_list, shorts=shorts_list, problem_sets=problem_sets)
- 
-        # Scrape detailed problem set data
-        problem_sets_data = self.get_problem_set(problem_sets, week)
- 
-        # Save data
-        file_manager.save_data(course=self.course, week=week, lectures=lecture_data, shorts=shorts_data, problem_sets_data=problem_sets_data)
-    """
+    # includes/cs50.py
+    def get_media_links(self, content, download_audio, download_video, download_code):
+        soup = BeautifulSoup(content, 'html.parser')
+        links = {'audio': [], 'video': [], 'code': [], 'pdf': []}
+
+        # Find audio links
+        if download_audio:
+            audio_links = soup.find_all('a', href=re.compile(r'.*\.mp3$'))
+            for link in audio_links:
+                links['audio'].append(link['href'])
+
+        # Find video links (720p)
+        if download_video:
+            video_links = soup.find_all('a', href=re.compile(r'.*720p\.mp4$'))
+            for link in video_links:
+                links['video'].append(link['href'])
+
+        # Find code links
+        if download_code:
+            code_links = soup.find_all('a', href=re.compile(r'.*\.zip$'))
+            for link in code_links:
+                links['code'].append(link['href'])
+
+        # Find PDF links
+        pdf_links = soup.find_all('a', href=re.compile(r'.*\.pdf$'))
+        for link in pdf_links:
+            links['pdf'].append(link['href'])
+
+        #("Debug - Extracted Media Links:", links)  # Debug print statement
+        return links
+
+
