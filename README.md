@@ -24,6 +24,9 @@ CS50 Study Buddy is currently in development. Some features have not been proper
 
 ## Recent Updates
 
+- **Added Granular Debugging Options**: Implemented debug categories for more granular control over the debug output. Users can now select specific parts of the code to debug, such as scraping, problem sets, media links extraction, folder creation, file download, and data saving.
+- **Added Course Selection and Configuration Options Flow**: Improved the interface to allow users to select courses, configure download options, and run the course aide with a clear and user-friendly flow.
+- **Introduced Debug Flag**: Added a debug flag to control debug output, making it easier to diagnose issues.
 - **Added Course Selection and Configuration Options Flow**: Improved the interface to allow users to select courses, configure download options, and run the course aide with a clear and user-friendly flow.
 - **Introduced Debug Flag**: Added a debug flag to control debug output, making it easier to diagnose issues.
 - **Dynamic Course Folder Naming**: Implemented dynamic naming for course folders (e.g., `cs50x`, `cs50p`, `cs50ai`, etc.).
@@ -71,7 +74,7 @@ You can run the program either via the command line or interactively through the
 #### Command Line Usage
 
 ```bash
-python main.py -course [course_name] -destination [output_directory] -audio -video -code -debug 
+python main.py -course [course_name] -destination [output_directory] -audio -video -code -debug -debug_categories [category1,category2,...]
 ``` 
 
 #### Interactive Menu

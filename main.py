@@ -12,7 +12,8 @@ def main():
     if len(sys.argv) > 1:
         cli = CommandLine()
         args = cli.parse_arguments()
-        scraper = CS50Scraper(course=args.course, base_directory=args.destination, debug=args.debug)
+        debug_categories = args.debug_categories.split(',') if args.debug else []
+        scraper = CS50Scraper(course=args.course, base_directory=args.destination, debug_categories=debug_categories)
         scraper.scrape_course(download_audio=args.audio, download_video=args.video, download_code=args.code)
     else:
         interface = Interface(course_manager)  # Pass CS50 instance to Interface

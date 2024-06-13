@@ -1,4 +1,5 @@
 # includes/cs50interface.py
+
 import inquirer
 from pprint import pprint
 from includes.cs50scraper import CS50Scraper  # Import CS50Scraper from the new module
@@ -14,6 +15,7 @@ class Interface:
             "Code": False,
             "Course Folder": "saved",
             "Debug": False,
+            "Debug Categories": [],
         }
 
     def display_menu(self):
@@ -98,6 +100,22 @@ class Interface:
                     self.program_settings['Course Folder'] = directory_answer['directory']
                 if 'debugging' in setting.lower():
                     self.program_settings['Debug'] = True
+                    debug_categories_question = [
+                        inquirer.Checkbox(
+                            'debug_categories',
+                            message="Select debug categories to enable",
+                            choices=[
+                                'scraping',
+                                'problem_sets',
+                                'media_links',
+                                'folder_creation',
+                                'file_download',
+                                'data_saving',
+                            ],
+                        ),
+                    ]
+                    debug_categories_answer = inquirer.prompt(debug_categories_question)
+                    self.program_settings['Debug Categories'] = debug_categories_answer['debug_categories']
 
             if answers['action'] == 'Back':
                 self.select_courses()
@@ -121,10 +139,11 @@ class Interface:
         print(f"Download code: {self.program_settings['Code']}")
         print(f"Destination folder: {self.program_settings['Course Folder']}")
         print(f"Debugging: {self.program_settings['Debug']}")
+        print(f"Debug Categories: {', '.join(self.program_settings['Debug Categories'])}")
 
         for course in self.selected_courses:
             # Instantiate the CS50Scraper and run it with the selected options
-            scraper = CS50Scraper(course, self.program_settings['Course Folder'], self.program_settings['Debug'])
+            scraper = CS50Scraper(course, self.program_settings['Course Folder'], self.program_settings['Debug Categories'])
             
             # Scrape course data and save it using the file manager
             scraper.scrape_course(
